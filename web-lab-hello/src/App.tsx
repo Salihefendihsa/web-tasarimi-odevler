@@ -41,6 +41,17 @@ function App() {
           <span className="badge">🔷 TypeScript</span>
         </div>
 
+        <div className="skills-section">
+          <h3>Becerilerim</h3>
+          <div className="tech-stack">
+            <span className="badge skill">Python</span>
+            <span className="badge skill">C#</span>
+            <span className="badge skill">Java</span>
+            <span className="badge skill">SQL</span>
+            <span className="badge skill">MATLAB</span>
+          </div>
+        </div>
+
         <footer className="footer">
           Merhaba! Ben Hilmi Salih, yazılım geliştirmeye tutkulu bir girişimci adayıyım 🚀
         </footer>
