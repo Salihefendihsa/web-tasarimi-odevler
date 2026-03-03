@@ -2,34 +2,28 @@
  * Design Tokens (Renkler, Boşluklar, CSS Değişkenleri, Tipografi)
  */
 
-:root {
-    /* Renk Paleti (Dark Theme / Neon) */
-    --color-bg-base: #0f172a;
-    /* Sayfa arka planı */
-    --color-bg-card: rgba(30, 41, 59, 0.4);
-    --color-bg-card-hover: rgba(30, 41, 59, 0.6);
-    --color-bg-header: rgba(15, 23, 42, 0.7);
+:root,
+[data-theme="dark"] {
+    /* 3. Dark Mode Modern (Çok Profesyonel) */
+    --color-primary: #3B82F6;
+    --color-primary-light: #60A5FA;
+    /* Secondary mantığında kullanıldı */
+    --color-primary-dark: #2563EB;
 
-    --color-text-primary: #f8fafc;
-    /* Başlıklar & güçlü metinler */
-    --color-text-secondary: #cbd5e1;
-    /* Paragraflar */
-    --color-text-muted: #94a3b8;
-    /* Etiketler, tarihler */
-
-    --color-primary: #8b5cf6;
-    /* Ana Tema (Mor) */
-    --color-primary-light: #a78bfa;
-    --color-primary-dark: #6d28d9;
-
-    --color-accent: #f472b6;
-    /* Vurgu (Pembe) */
+    --color-accent: #A78BFA;
     --color-info: #38bdf8;
-    /* Bilgi (Mavi) */
     --color-success: #10b981;
-    /* Başarı (Yeşil) */
     --color-error: #fb7185;
-    /* Hata (Kırmızı/Gül) */
+
+    --color-bg-base: #0F172A;
+    --color-bg-card: #1E293B;
+    --color-bg-card-hover: rgba(51, 65, 85, 0.5);
+    --color-bg-header: rgba(15, 23, 42, 0.85);
+
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94A3B8;
+    --color-border: #334155;
 
     /* Shadows & Borders */
     --border-radius-sm: 6px;
@@ -37,9 +31,9 @@
     --border-radius-lg: 20px;
     --border-radius-full: 9999px;
 
-    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
-    --shadow-glow-primary: 0 0 15px rgba(139, 92, 246, 0.3);
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+    --shadow-glow-primary: 0 0 15px rgba(59, 130, 246, 0.4);
 
     /* Spacing (Boşluklar) */
     --space-xs: 0.25rem;
@@ -49,19 +43,39 @@
     --space-xl: 2rem;
     --space-2xl: 3rem;
 
-    /* Fluid Typography 
-   * clamp(min, vw, max) formülü ile ekran genişledikçe font büyür.
-   * Min viewport (320px) ile Max viewport (1280px) arasında akıcı değişim.
-   */
+    /* Fluid Typography */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
     --text-sm: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
     --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
-    /* Paragraflar */
     --text-lg: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
     --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-    /* h3 (Projeler) */
     --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
-    /* h2 (Bölümler) */
     --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
-    /* h1 (Ana Başlık) */
+}
+
+[data-theme="light"] {
+    /* 2. Modern Gradient + Tech Vibe (Light Mode) */
+    --color-primary: #6366F1;
+    --color-primary-light: #8B5CF6;
+    /* Secondary mantığında kullanıldı */
+    --color-primary-dark: #4F46E5;
+
+    --color-accent: #06B6D4;
+    --color-info: #0EA5E9;
+    --color-success: #059669;
+    --color-error: #E11D48;
+
+    --color-bg-base: #F8FAFC;
+    --color-bg-card: #FFFFFF;
+    --color-bg-card-hover: #F1F5F9;
+    --color-bg-header: rgba(248, 250, 252, 0.85);
+
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #334155;
+    --color-text-muted: #64748B;
+    --color-border: #E2E8F0;
+
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --shadow-glow-primary: 0 0 15px rgba(99, 102, 241, 0.3);
 }

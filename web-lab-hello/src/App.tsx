@@ -4,6 +4,12 @@ import './App.css'
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [activeProject, setActiveProject] = useState<{ title: string, fullDesc: string, img: string } | null>(null);
+  const [theme, setTheme] = useState('dark');
+
+  // Tema Değişimini HTML'e Yansıt
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     // Intro animasyonu 2.5 saniye sonra gizlensin
@@ -12,6 +18,10 @@ function App() {
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   return (
     <>
@@ -24,9 +34,9 @@ function App() {
           <div className="intro-roles">
             <span className="role">Yazılım Mühendisi</span>
             <span className="dot">•</span>
-            <span className="role">E-ticaret Uzmanı</span>
+            <span className="role">Tech Founder</span>
             <span className="dot">•</span>
-            <span className="role">Girişimci</span>
+            <span className="role">E-ticaret Uzmanı</span>
           </div>
         </div>
       </div>
@@ -34,13 +44,22 @@ function App() {
       <header className="site-header">
         <div className="header-container">
           <div className="logo">HSA Portfolyo</div>
-          <nav aria-label="Ana Menü">
-            <ul>
-              <li><a href="#hakkimda">Hakkımda</a></li>
-              <li><a href="#yetenekler">Yetenekler</a></li>
-              <li><a href="#projeler">Projeler</a></li>
-            </ul>
-          </nav>
+          <div className="header-controls">
+            <nav aria-label="Ana Menü">
+              <ul>
+                <li><a href="#hakkimda">Hakkımda</a></li>
+                <li><a href="#yetenekler">Yetenekler</a></li>
+                <li><a href="#projeler">Projeler</a></li>
+              </ul>
+            </nav>
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Temayı değiştir"
+            >
+              {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+            </button>
+          </div>
         </div>
       </header>
 
