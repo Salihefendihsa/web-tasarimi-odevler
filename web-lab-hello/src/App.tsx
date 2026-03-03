@@ -1,9 +1,35 @@
+import { useState, useEffect } from 'react';
 import './App.css'
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+  const [activeProject, setActiveProject] = useState<{ title: string, fullDesc: string, img: string } | null>(null);
+
+  useEffect(() => {
+    // Intro animasyonu 2.5 saniye sonra gizlensin
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <a href="#main-content" className="skip-link">Ana içeriğe atla</a>
+
+      {/* Intro Ekranı */}
+      <div className={`intro-screen ${showIntro ? 'active' : ''}`}>
+        <div className="intro-content">
+          <h1>Hilmi Salih Altınışık</h1>
+          <div className="intro-roles">
+            <span className="role">Yazılım Mühendisi</span>
+            <span className="dot">•</span>
+            <span className="role">E-ticaret Uzmanı</span>
+            <span className="dot">•</span>
+            <span className="role">Girişimci</span>
+          </div>
+        </div>
+      </div>
 
       <header className="site-header">
         <div className="header-container">
@@ -73,9 +99,17 @@ function App() {
         <section id="projeler" className="section">
           <div className="card">
             <h2>Projelerim</h2>
+            <p className="projects-hint">Projelerin detaylarını görmek için üzerlerine tıklayın.</p>
             <div className="projects-grid">
 
-              <article className="project-card">
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'Faldex - E-ticaret Yönetimi',
+                  img: 'https://via.placeholder.com/800x400?text=Faldex+E-ticaret',
+                  fullDesc: 'Faldex markasının "Trend Ürünler" koleksiyonunda yer alan aromaterapi difüzörleri için Shopify tabanlı e-ticaret mağazasının baştan sona yönetimini yürüttüm. Pazar analizi araçları (WinningHunter) ile hedef kitle tespiti yaparak, dönüşüm oranlarını artıracak satış stratejileri, uygun reklam görselleri ve sosyal medya planlamaları geliştirdim.'
+                })}
+              >
                 <h3>Faldex - E-ticaret Yönetimi</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=Faldex+E-ticaret" alt="Faldex e-ticaret mağazasının genel görünümü ve analiz panosu" className="project-image" />
@@ -84,7 +118,14 @@ function App() {
                 <p>Aromaterapi difüzörleri için Shopify tabanlı e-ticaret mağazası yönetimi, pazar analizi ve dönüşüm optimizasyonu.</p>
               </article>
 
-              <article className="project-card">
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'Güvenlik Kameraları Suçlu Tespiti',
+                  img: 'https://via.placeholder.com/800x400?text=Kamera+Projesi',
+                  fullDesc: 'Derin öğrenme ve yapay zeka yöntemleriyle güvenlik kamerası görüntülerinden suçluların tespitini ve takibini amaçlayan TÜBİTAK 2209-A projesi. Sistem, şüpheli hareketleri algılayıp gerçek zamanlı olarak yüz ya da beden eşleştirmesi yaparak kolluk kuvvetlerine anlık bildirim sağlamakta.'
+                })}
+              >
                 <h3>Güvenlik Kameraları Suçlu Tespiti</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=Kamera+Projesi" alt="Güvenlik kamerasından alınan ve derin öğrenme ile işaretlenmiş kişi tespit görüntüsü" className="project-image" />
@@ -93,7 +134,14 @@ function App() {
                 <p>Derin öğrenme yöntemleriyle suçluların tespit ve takibini amaçlayan TÜBİTAK 2209-A projesi.</p>
               </article>
 
-              <article className="project-card">
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'Kişisel Harcama Planlayıcı',
+                  img: 'https://via.placeholder.com/800x400?text=Harcama+Planlayici',
+                  fullDesc: 'Bireysel bütçe yönetimi için kullanıcılara harcama planlama ve raporlama imkanı sunan modern web projesi. Gelir-gider tabloları ve otomatik oluşturulan veri grafikleriyle (Dashboard) kullanıcıların finansal kararlarını daha rahat almalarını amaçlar.'
+                })}
+              >
                 <h3>Kişisel Harcama Planlayıcı</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=Harcama+Planlayici" alt="Kişisel bütçe uygulamasına ait harcama grafiklerini gösteren arayüz ekranı" className="project-image" />
@@ -102,7 +150,14 @@ function App() {
                 <p>Bireysel bütçe yönetimi için kullanıcılara harcama planlama imkanı sunan web projesi.</p>
               </article>
 
-              <article className="project-card">
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'YÜK-LE: B2B/B2C Lojistik Platformu',
+                  img: 'https://via.placeholder.com/800x400?text=YUK-LE+Lojistik',
+                  fullDesc: 'Yapay Zeka ve Coğrafi Bilgi Sistemleri (GIS) destekli dijital pazar yeri. Lojistik sektöründeki fiyat belirsizliğini, araçların boş dönüş verimsizliğini ve tahsilat güvensizliğini ortadan kaldırmayı hedefler. Yük sahipleri ile güvenilirlik onayı yapılmış taşıyıcıları lokasyon bazlı eşleştirir, navlun (taşıma) bedelini yapay zeka ile dinamik olarak hesaplar ve Escrow (Güvenli Havuz) yöntemiyle taraflar arası güveni sağlar.'
+                })}
+              >
                 <h3>YÜK-LE: B2B/B2C Lojistik Platformu</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=YUK-LE+Lojistik" alt="Yapay zeka ve GIS destekli lojistik eşleştirme platformu harita görünümü" className="project-image" />
@@ -111,8 +166,15 @@ function App() {
                 <p>Lojistik sektöründeki fiyat belirsizliğini ve tahsilat güvensizliğini ortadan kaldıran, yük sahipleri ile şoförleri saniyeler içinde eşleştiren yapay zeka destekli dijital pazar yeri ve Escrow ödeme sistemi.</p>
               </article>
 
-              <article className="project-card">
-                <h3>2KAI Yazılım - Rüya Tabiri Uygulaması</h3>
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'Rüya Tabiri Uygulaması',
+                  img: 'https://via.placeholder.com/800x400?text=Ruya+Tabiri+App',
+                  fullDesc: 'Kullanıcıların anlattığı rüyaları yapay zeka modelleriyle yorumlayan, psikolojik sembolizme dayalı analiz sunan mobil/web rüya tabiri uygulaması. Gelişmiş NLP asistanıyla, kullanıcının gördüğü nesneleri ve duygu durumlarını analiz edip kişiselleştirilmiş rehberlik sunar.'
+                })}
+              >
+                <h3>Rüya Tabiri Uygulaması</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=Ruya+Tabiri+App" alt="Yapay zeka analizli rüya tabiri mobil uygulaması arayüzü" className="project-image" />
                   <figcaption>Gelişmiş analiz algoritmalarıyla rüya yorumlama uygulaması.</figcaption>
@@ -120,7 +182,14 @@ function App() {
                 <p>Kullanıcıların anlattığı rüyaları yapay zeka modelleriyle yorumlayan, psikolojik sembolizme dayalı analiz sunan mobil/web rüya tabiri uygulaması.</p>
               </article>
 
-              <article className="project-card">
+              <article
+                className="project-card clickable"
+                onClick={() => setActiveProject({
+                  title: 'Combin-Maker (Kombin Giydirme)',
+                  img: 'https://via.placeholder.com/800x400?text=Combin+Maker',
+                  fullDesc: 'Kullanıcıların kendi fotoğrafları veya sanal mankenler üzerinden, farklı mağaza veya dolaplarındaki kıyafetleri dijital olarak birleştirip deneyebildiği etkileşimli sanal kabin. Hem e-ticaret sitelerine entegre edilebilir B2B tarafı hem de gündelik kıyafet seçimini hızlandıran B2C tarafıyla moda alışkanlıklarını dijitalleştirmeyi amaçlar.'
+                })}
+              >
                 <h3>Combin-Maker (Kombin Giydirme)</h3>
                 <figure className="project-figure">
                   <img src="https://via.placeholder.com/400x200?text=Combin+Maker" alt="Sanal kıyafet deneme ve kombin oluşturma uygulaması ekranı" className="project-image" />
@@ -132,6 +201,24 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* Modal Alanı */}
+        {activeProject && (
+          <div className="project-modal" onClick={() => setActiveProject(null)} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button
+                className="modal-close"
+                onClick={() => setActiveProject(null)}
+                aria-label="Modalı kapat"
+              >
+                &times;
+              </button>
+              <h2 id="modal-title">{activeProject.title}</h2>
+              <img src={activeProject.img} alt={activeProject.title} className="modal-image" />
+              <p className="modal-desc">{activeProject.fullDesc}</p>
+            </div>
+          </div>
+        )}
 
         {/* BÖLÜM 4: İletişim Formu */}
         <section id="iletisim" className="section">
