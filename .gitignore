@@ -7,5 +7,17 @@ desktop.ini
 .vscode/
 .idea/
 
-# Node modules (if any)
+# Node modules
 node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
